@@ -3,7 +3,8 @@
   "scripts": {
     "lint": "npx prettier --check .",
     "lint:fix": "npx prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start": "node index.js"
   },
   "dependencies": {
     "@discordjs/rest": "^1.4.0",
