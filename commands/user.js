@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js')
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -10,6 +10,6 @@ module.exports = {
     await interaction.deferReply()
     await interaction.editReply(
       `This command was run by ${interaction.user.username}, who joined on ${interaction.member.joinedAt}.`
-    );
+    )
   },
-};
+}
