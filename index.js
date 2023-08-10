@@ -2,6 +2,9 @@ const fs = require('node:fs')
 const path = require('node:path')
 require('dotenv').config()
 const { Client, Events, GatewayIntentBits, Collection } = require('discord.js')
+const cron = require('node-cron')
+const { celebrants } = require('./data')
+const store = require('./data/birthdays.json')
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] })
 
@@ -32,6 +35,18 @@ client.on(Events.InteractionCreate, async (interaction) => {
     console.error(`No command matching ${interaction.commandName} was found.`)
     return
   }
+  
+  cron.schedule('0 0 * * *', async function () {
+    console.log('-------------------------------');
+    console.log('running a task every 24 hours');
+
+    const cele = await celebrants(store)
+    cele.map(data => client.channels.cache.get(`${process.env.CHANNEL_ID}`).send(`Hi it's wednesday! ${data.name}`) )
+    
+
+    console.log('done!')
+
+  });
 
   try {
     await command.execute(interaction)

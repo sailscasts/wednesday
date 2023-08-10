@@ -12,7 +12,7 @@ module.exports = {
     const getUser = store.find((data) => data.name === username)
 
     if (getUser) {
-      message = `Hi, ${username}. Your DOB: ${date(getUser.day)} ${
+      message = `Hi, ${username}. Your DOB: ${date(getUser.day)} of ${
         monthNames[getUser.month - 1]
       }`
     }

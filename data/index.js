@@ -34,4 +34,17 @@ module.exports = {
         return `${value}th`
     }
   },
+  celebrants: (arr) => {
+    return new Promise((resolve, reject) => {
+      let dob = []
+      const date = new Date()
+      arr.forEach(element => {
+        if (element.day === date.getDate()) {
+          // if (element.month === date.getMonth()) 
+          dob.push(element)
+        }
+      })
+      resolve(dob)
+    })
+  }
 }
