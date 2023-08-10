@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js')
 const store = require('../data/birthdays.json')
-const { monthNames, rangeMonth, date } = require('../data')
+const { monthNames, date } = require('../data')
 
 module.exports = {
   data: new SlashCommandBuilder()

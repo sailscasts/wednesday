@@ -35,18 +35,19 @@ client.on(Events.InteractionCreate, async (interaction) => {
     console.error(`No command matching ${interaction.commandName} was found.`)
     return
   }
-  
+
   cron.schedule('0 0 * * *', async function () {
-    console.log('-------------------------------');
-    console.log('running a task every 24 hours');
+    console.log('-----------------------------')
+    console.log('running a task every 24 hours')
+    console.log('-----------------------------')
 
-    const cele = await celebrants(store)
-    cele.map(data => client.channels.cache.get(`${process.env.CHANNEL_ID}`).send(`Hi it's wednesday! ${data.name}`) )
-    
-
-    console.log('done!')
-
-  });
+    const birthdays = await celebrants(store)
+    birthdays.map((data) =>
+      client.channels.cache
+        .get(`${process.env.CHANNEL_ID}`)
+        .send(`Hi it's wednesday! ${data.name}`)
+    )
+  })
 
   try {
     await command.execute(interaction)

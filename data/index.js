@@ -3,8 +3,6 @@ const _ = require('lodash')
 module.exports = {
   dir: __dirname,
   fileName: 'birthdays.json',
-  rangeDays: _.range(1, 32),
-  rangeMonth: _.range(1, 13),
   monthNames: [
     'January',
     'February',
@@ -38,13 +36,24 @@ module.exports = {
     return new Promise((resolve, reject) => {
       let dob = []
       const date = new Date()
-      arr.forEach(element => {
+      arr.forEach((element) => {
         if (element.day === date.getDate()) {
-          // if (element.month === date.getMonth()) 
-          dob.push(element)
+          if (element.month === date.getMonth()) dob.push(element)
         }
       })
       resolve(dob)
     })
-  }
+  },
+  inputChecker: (day, month) => {
+    let message = 'Thanks for the entry'
+
+    if (!_.range(1, 32).includes(day)) {
+      message = 'Please enter your DOB again'
+    }
+    if (!_.range(1, 13).includes(month)) {
+      message = 'Please enter your DOB again'
+    }
+
+    return message
+  },
 }

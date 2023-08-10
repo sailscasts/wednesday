@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js')
 const fs = require('fs')
-const { dir, fileName, rangeDays, rangeMonth } = require('../data')
+const { dir, fileName, inputChecker } = require('../data')
 const store = require('../data/birthdays.json')
 const _ = require('lodash')
 
@@ -24,15 +24,9 @@ module.exports = {
     const username = interaction.user.username
     const getUser = store.find((data) => data.name === username)
 
-    let message = 'Thanks for the entry.'
+    const message = inputChecker(day, month)
 
     if (getUser) {
-      if (!rangeDays.includes(day)) {
-        message = 'Please enter your DOB again'
-      }
-      if (!rangeMonth.includes(month)) {
-        message = 'Please enter your DOB again'
-      }
       getUser.day = day
       getUser.month = month
       fs.writeFileSync(
