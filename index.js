@@ -45,7 +45,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
     birthdays.map((data) =>
       client.channels.cache
         .get(`${process.env.CHANNEL_ID}`)
-        .send(`Hi it's wednesday! ${data.name}`)
+        .send(`Happy Birthday ${data.name}!🥳🎊 \n Another adventure filled year awaits you.`)
     )
   })
 
