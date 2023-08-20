@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('discord.js')
 const fs = require('fs')
 const { dir, fileName, inputChecker } = require('../data')
 const store = require('../data/birthdays.json')
-const _ = require('lodash')
 
 module.exports = {
   data: new SlashCommandBuilder()
